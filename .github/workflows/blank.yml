@@ -64,4 +64,4 @@ jobs:
         run: aws deploy create-deployment
           --application-name GithubActionTest
           --deployment-group-name GithubActionTestEC2Instances
-          --s3-location ${{ secrets.AWS_S3_BUCKET }}/GithubActionTest/github_action_test_$GITHUB_SHA
+          --s3-location bucket=${{ secrets.AWS_S3_BUCKET }},key=GithubActionTest/github_action_test_$GITHUB_SHA,bundleType=zip
