@@ -56,5 +56,5 @@ jobs:
       - name: Run a multi-line script
         run: aws deploy push
           --application-name GithubActionTest
-          --s3-location ${{ secrets.AWS_S3_BUCKET }}
+          --s3-location ${{ secrets.AWS_S3_BUCKET }}/GithubActionTest/github_action_test_${{ vars.GITHUB_SHA }}
           --ignore-hidden-files
