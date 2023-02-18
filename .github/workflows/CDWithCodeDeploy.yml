@@ -57,7 +57,6 @@ jobs:
         run: aws deploy push
           --application-name GithubActionTest
           --s3-location s3://${{ secrets.AWS_S3_BUCKET }}/GithubActionTest/github_action_test_$GITHUB_SHA
-          --ignore-hidden-files
           
       # Deploy to EC2 Instances
       - name: Deploy to EC2 Instances
