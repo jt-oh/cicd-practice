@@ -87,36 +87,36 @@ Revision 은 Github Repository 혹은 AWS S3 에 위치해 있어야 합니다.
 Deployment 생성 시 Application, Deployment Group, Revision 을 지정해주어야 합니다.
 생성된 Deployment 는 CodeDeploy Agent 에 의해 운영환경에서 배포스크립트가 수행됨에 따라 상태가 변경됩니다.
 
-### Implementation
+## Implementation
 
-#### Prerequisite
+### Prerequisite
 
 - Revision 저장용 AWS S3 Bucket (CodeDeploy Application 을 생성할 Region 과 동일한 Region)
 - AWSCodeDeployFullAccess 와 AMAZONS3FullAccess 권한이 있는 IAM User
 - 배포환경용 EC2 Instance
 
-#### 배포환경 EC2 Instance 용 IAM Role 생성
+### 배포환경 EC2 Instance 용 IAM Role 생성
 
 AWSCodeDeoployFullAccess 와 AMAZONS3FullAccess Policy 를 부여한 EC2 Instance 용 IAM Role 을 생성합니다.
 
-#### 배포환경 EC2 Instnace 에 배포환경 EC2 Instance 용 IAM Role 부여
+### 배포환경 EC2 Instnace 에 배포환경 EC2 Instance 용 IAM Role 부여
 
 위에서 생성한 배포환경 EC2 IAM Role 을 배포환경 EC2 Instance 에 부여합니다.
 
-#### CodeDeploy 용 IAM Role 생성
+### CodeDeploy 용 IAM Role 생성
 
 AWSCodeDeployFullAccess 권한을 부여한 CodeDeploy DeploymentGroup 용 IAM Role 을 생성합니다.
 
-#### CodeDeploy Application 생성
+### CodeDeploy Application 생성
 
 CodeDeploy Application 을 생성합니다.
 
-#### CodeDeploy DeploymentGroup 생성
+### CodeDeploy DeploymentGroup 생성
 
 위에서 생성한 CodeDeploy 용 AWSCodeDeployFullAccess 권한이 있는 IAM Role 역할을 가지며, 배포환경 EC2 Instance 를 연결한 Deployment Group 을 생성합니다.
 배포 방법을 설정할 수도 있습니다.
 
-#### Github Workflow 정의
+### Github Workflow 정의
 
 Github Checkout Action, AWS Crendential Configuration Action, AWS CLI Command 를 이용해 workflow 를 구성합니다.
 
@@ -124,12 +124,12 @@ Github Checkout Action, AWS Crendential Configuration Action, AWS CLI Command �
 
 AWS Credential 과 같이 외부에 공개되면 안되는 값은 Github Repository Secret 으로 등록하여 사용합니다.
 
-#### 서비스 Application 에 appspec.yml 정의
+### 서비스 Application 에 appspec.yml 정의
 
 배포 대상 Root Directory 에 운영환경에 배포 시의 배포 동작을 정의한 appspec.yml 파일을 작성합니다.
 설치 경로, 설치 파일 소유권 설정, 설치 전/후 동작 등을 정의할 수 있습니다.
 
-### Conclusion
+## Conclusion
 
 Github Action 과 AWS CodeDeploy 를 이용해 AWS EC2 Intsance 배포환경에 배포 페키지를 자동 배포하는 CD 파이프라인을 구성하였습니다.
 CD 파이프라인은 반복적인 배포 과정을 자동화하여 개발자와 인프라 관리자가 그들의 자원을 더 중요한 곳에 투자할 수 있게 해주기 때문에 중요하다고 생각합니다.
@@ -137,7 +137,7 @@ CD 파이프라인은 반복적인 배포 과정을 자동화하여 개발자와
 
 추후에는 패키지 자동 배포를 넘어 Container 자동 배포, Infrastructure As Code Tool 을 이용해 AWS Service 간 구성 및 설정에 소요되는 시간을 줄여볼 예정입니다.
 
-### References
+## References
 
 - <https://blog.bespinglobal.com/post/github-action-%EC%9C%BC%EB%A1%9C-ec2-%EC%97%90-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0/>
 - <https://docs.github.com/en/actions/learn-github-actions>
